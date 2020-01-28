@@ -1,6 +1,4 @@
 import sys
-sys.path.append('../doubly_linked_list')
-
 
 """Each ListNode holds a reference to its previous node
 as well as its next node in the List."""
@@ -65,7 +63,7 @@ class DoublyLinkedList:
             new_node.next = self.head
             self.head.prev = new_node
             self.head = new_node
-    
+        pass
 
     """Removes the List's current head node, making the
     current head's next node the new head of the List.
@@ -74,7 +72,7 @@ class DoublyLinkedList:
         value = self.head.value
         self.delete(self.head)
         return value
-      
+        pass
 
     """Wraps the given value in a ListNode and inserts it 
     as the new tail of the list. Don't forget to handle 
@@ -89,7 +87,7 @@ class DoublyLinkedList:
             new_node.prev = self.tail
             self.tail.next = new_node
             self.tail = new_node
-      
+        pass
 
     """Removes the List's current tail node, making the 
     current tail's previous node the new tail of the List.
@@ -98,7 +96,7 @@ class DoublyLinkedList:
         value = self.tail.value
         self.delete(self.tail)
         return value
-       
+        pass
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List."""
@@ -107,7 +105,7 @@ class DoublyLinkedList:
         self.delete(node)
         self.add_to_head(value)
         return value
-   
+        pass
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
@@ -116,7 +114,7 @@ class DoublyLinkedList:
         self.delete(node)
         self.add_to_tail(value)
         return value
-        
+        pass
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
@@ -136,7 +134,7 @@ class DoublyLinkedList:
             node.delete()
         else:
             node.delete()
-      
+        pass
         
     """Returns the highest value currently in the list"""
     def get_max(self):
@@ -149,24 +147,27 @@ class DoublyLinkedList:
                 max_value = current.value
             current = current.next
         return max_value
-      
-
-
-
-
+        pass
 
 
 class Stack:
     def __init__(self):
         self.size = 0
         # Why is our DLL a good choice to store our elements?
-        # self.storage
+        self.storage = DoublyLinkedList()
 
     def push(self, value):
-        pass
-
+           self.size += 1
+           self.storage.add_to_tail(value)
+        
     def pop(self):
+        if self.size == 0:
+            return None
+        else:
+            value=self.storage.remove_from_head()
+            return value
         pass
 
     def len(self):
-        pass
+        return self.size
+     

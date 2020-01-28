@@ -1,5 +1,14 @@
 import sys
-sys.path.append('../doubly_linked_list')
+# from doubly_linked_list import DoublyLinkedList
+# sys.path.append('doubly_linked_list')
+
+
+
+
+
+
+"""Each ListNode holds a reference to its previous node
+as well as its next node in the List."""
 
 
 class ListNode:
@@ -70,7 +79,7 @@ class DoublyLinkedList:
         value = self.head.value
         self.delete(self.head)
         return value
-        
+        pass
 
     """Wraps the given value in a ListNode and inserts it 
     as the new tail of the list. Don't forget to handle 
@@ -85,7 +94,7 @@ class DoublyLinkedList:
             new_node.prev = self.tail
             self.tail.next = new_node
             self.tail = new_node
-        
+        pass
 
     """Removes the List's current tail node, making the 
     current tail's previous node the new tail of the List.
@@ -94,7 +103,7 @@ class DoublyLinkedList:
         value = self.tail.value
         self.delete(self.tail)
         return value
-      
+        pass
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List."""
@@ -103,7 +112,7 @@ class DoublyLinkedList:
         self.delete(node)
         self.add_to_head(value)
         return value
-       
+        pass
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
@@ -112,7 +121,7 @@ class DoublyLinkedList:
         self.delete(node)
         self.add_to_tail(value)
         return value
-     
+        pass
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
@@ -132,7 +141,7 @@ class DoublyLinkedList:
             node.delete()
         else:
             node.delete()
-        
+        pass
         
     """Returns the highest value currently in the list"""
     def get_max(self):
@@ -145,24 +154,44 @@ class DoublyLinkedList:
                 max_value = current.value
             current = current.next
         return max_value
-     
+        pass
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class Queue:
     def __init__(self):
         self.size = 0
         # Why is our DLL a good choice to store our elements?
-        # self.storage
+        self.storage = DoublyLinkedList()
 
     def enqueue(self, value):
+        self.size+= 1
+        print(value)
+        self.storage.add_to_tail(value)
         pass
 
     def dequeue(self):
-        pass
+        if self.size==0:
+            print("returning 0")
+            return None
+        else:
+            self.size -=1
+            value=self.storage.remove_from_head()
+        return value
+        
 
     def len(self):
-        pass
-
-
-
-
+        return self.size
+      
