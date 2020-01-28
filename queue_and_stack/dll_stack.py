@@ -3,7 +3,7 @@ import sys
 """Each ListNode holds a reference to its previous node
 as well as its next node in the List."""
 
-
+"""Had to copy thr doubly search_tree because it wasn't linking to the stack or queue file."""
 class ListNode:
     def __init__(self, value, prev=None, next=None):
         self.value = value
@@ -154,19 +154,22 @@ class Stack:
     def __init__(self):
         self.size = 0
         # Why is our DLL a good choice to store our elements?
-        self.storage = DoublyLinkedList()
+        """Reads the doubly_link file"""
+        self.storage = DoublyLinkedList() 
+
 
     def push(self, value):
            self.size += 1
-           self.storage.add_to_tail(value)
+           self.storage.add_to_head(value)
         
     def pop(self):
-        if self.size == 0:
+        if self.size > 0:
+           top = self.storage.remove_from_head()
+           self.size -= 1
+           return top
+        else: 
             return None
-        else:
-            value=self.storage.remove_from_head()
-            return value
-        pass
+            
 
     def len(self):
         return self.size
