@@ -72,7 +72,7 @@ class DoublyLinkedList:
         value = self.head.value
         self.delete(self.head)
         return value
-        pass
+ 
 
     """Wraps the given value in a ListNode and inserts it 
     as the new tail of the list. Don't forget to handle 
@@ -96,7 +96,7 @@ class DoublyLinkedList:
         value = self.tail.value
         self.delete(self.tail)
         return value
-        pass
+ 
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List."""
@@ -105,7 +105,7 @@ class DoublyLinkedList:
         self.delete(node)
         self.add_to_head(value)
         return value
-        pass
+ 
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
@@ -114,7 +114,7 @@ class DoublyLinkedList:
         self.delete(node)
         self.add_to_tail(value)
         return value
-        pass
+ 
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
@@ -147,7 +147,7 @@ class DoublyLinkedList:
                 max_value = current.value
             current = current.next
         return max_value
-        pass
+   
 
 
 class Stack:
@@ -159,10 +159,12 @@ class Stack:
 
 
     def push(self, value):
+        # Adds to the front of the item
            self.size += 1
            self.storage.add_to_head(value)
         
     def pop(self):
+        # Removes from the head
         if self.size > 0:
            top = self.storage.remove_from_head()
            self.size -= 1
@@ -174,3 +176,4 @@ class Stack:
     def len(self):
         return self.size
      
+# Only can add or remove items from the top of the stack
