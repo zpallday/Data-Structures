@@ -70,7 +70,7 @@ class DoublyLinkedList:
         value = self.head.value
         self.delete(self.head)
         return value
-     
+      
 
     """Wraps the given value in a ListNode and inserts it 
     as the new tail of the list. Don't forget to handle 
@@ -94,8 +94,7 @@ class DoublyLinkedList:
         value = self.tail.value
         self.delete(self.tail)
         return value
-  
-
+    
     """Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List."""
     def move_to_front(self, node):
@@ -103,7 +102,7 @@ class DoublyLinkedList:
         self.delete(node)
         self.add_to_head(value)
         return value
- 
+        
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
@@ -112,7 +111,7 @@ class DoublyLinkedList:
         self.delete(node)
         self.add_to_tail(value)
         return value
-  
+        
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
@@ -145,7 +144,8 @@ class DoublyLinkedList:
                 max_value = current.value
             current = current.next
         return max_value
-    
+     
+
 
 
 
@@ -166,6 +166,7 @@ class LRUCache:
         pass
 
     """
+    Key
     Retrieves the value associated with the given key. Also
     needs to move the key-value pair to the end of the order
     such that the pair is considered most-recently used.
@@ -195,14 +196,14 @@ class LRUCache:
       if key in self.storage:
             node = self.storage[key]
             node.value = (key, value)
-            self.order.move_to_front(node)
+            self.order.move_to_end(node)
             return
       if self.size == self.limit:
-            del self.storage[self.order.tail.value[0]]
-            self.order.remove_from_tail()
-            self.size += 1
-      self.order.add_to_head((key, value))
-      self.storage[key] = self.order.head
-      self.size += 1
+            del self.storage[self.order.head.value[0]]
+            self.order.remove_from_head()
+            self.size -= 1
+      self.order.add_to_tail((key, value))
+      self.storage[key] = self.order.tail
+      self.size +=1
 
      
