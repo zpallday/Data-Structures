@@ -219,12 +219,13 @@ class BinarySearchTree:
         self.right = None
 
     # Insert the given value into the tree
+    # if you are inserting, there must be a root
     def insert(self, value):
-        if self.value < value: 
-          if self.right is None: 
-              self.right = BinarySearchTree(value) 
+        if self.value < value:    # if the value is less then self.value/ doesn't have a node
+          if self.right is None:     # if it doesn't have a node then it creates a new one 
+              self.right = BinarySearchTree(value)     
           else: 
-              self.right.insert(value) 
+              self.right.insert(value) # if it does have a node
         elif self.value >= value: 
            if self.left is None: 
               self.left = BinarySearchTree(value) 
@@ -233,6 +234,9 @@ class BinarySearchTree:
 
     # Return True if the tree contains the value
     # False if it does not
+    # Checks for the inputs target
+    # if the target = self.value. then it returns
+    #  or if not go left or right depending on the value number
     def contains(self, target):
         if target == self.value: 
           return True 
@@ -252,6 +256,9 @@ class BinarySearchTree:
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
+    #  counting first value
+    #  counting left side and then right
+    #  
     def for_each(self, cb):
         cb(self.value) 
         if self.left != None: 
@@ -264,17 +271,40 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if node:
+            self.in_order_print(node.left)
+            print(node.value)
+            self.in_order_print(node.right)
+           
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
+        storage = Queue()
+        storage.enqueue(node)
+        while storage.len() > 0:
+            current = storage.dequeue()
+            print(current.value)
+            if current.left:
+                storage.enqueue(current.left)
+            if current.right:
+                storage.enqueue(current.right)
         pass
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        stack = Stack()
+        current = self
+        stack.push(current)
+        while stack.len() > 0:
+            current = stack.pop()
+            print(current.value)
+            if current.left:
+                stack.push(current.left)
+            if current.right:
+                stack.push(current.right)
+     
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
